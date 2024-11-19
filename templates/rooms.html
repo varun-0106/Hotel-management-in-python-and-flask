@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container my-5">
+    <h1 class="text-center mb-4 font-weight-bold">Available Rooms</h1>
+
+    <table class="table table-hover table-bordered text-center shadow-lg">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Room Number</th>
+                <th scope="col">Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Capacity</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <tr>
+                <td>{{ room.r_id }}</td>
+                <td>{{ room.r_number }}</td>
+                <td>{{ room.r_type }}</td>
+
+                <!-- Room Status with Badge Indicator -->
+                <td>
+                    {% if room.r_status == 0 %}
+                    <span class="badge badge-success">Available</span>
+                    {% else %}
+                    <span class="badge badge-danger">Booked</span>
+                    {% endif %}
+                </td>
+
+                <td>{{ room.r_capacity }}</td>
+
+                <!-- Conditional Button for Booking -->
+                <td>
+                    {% if room.r_status == 0 %}
+                    <a href="bookings/{{ room.r_id }}" class="btn btn-success px-4">Book</a>
+                    {% else %}
+                    <a href="#" class="btn btn-secondary px-4" disabled>Unavailable</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
