@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container my-5">
+    <h1 class="text-center mb-4 font-weight-bold">Facilities Available</h1>
+
+    <table class="table table-hover table-bordered text-center shadow-lg">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Type</th>
+                <th scope="col">Capacity</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for amenity in amenities %}
+            <tr>
+                <td>{{ amenity.a_id }}</td>
+                <td><a href="view_amenity/{{ amenity.a_id }}" class="btn btn-default">{{ amenity.a_title }}</a></td>
+                <td>{{ amenity.a_type }}</td>
+                <td>{{ amenity.a_capacity }}</td>
+
+                <!-- Amenity Status with Badge Indicator -->
+                <td>
+                    {% if amenity.a_status == 0 %}
+                    <span class="badge badge-success">Available</span>
+                    {% else %}
+                    <span class="badge badge-danger">Not Available</span>
+                    {% endif %}
+                </td>
+
+                <!-- Conditional Button for Booking -->
+                <td>
+                    {% if amenity.a_status == 0 %}
+                    <a href="bookings/{{ amenity.a_id }}" class="btn btn-success px-4">Book</a>
+                    {% else %}
+                    <a href="#" class="btn btn-secondary px-4" disabled>Unavailable</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

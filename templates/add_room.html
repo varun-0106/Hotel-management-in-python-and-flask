@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container my-5">
+    <h1 class="text-center mb-4 font-weight-bold">Add a Room</h1>
+    <form method="POST" action="" class="shadow-lg p-4 rounded bg-light">
+        {% from "includes/_formhelpers.html" import render_field %}
+
+        <div class="form-group">
+            <label for="room_id">Room ID</label>
+            {{ render_field(form.id, class_="form-control", id="room_id") }}
+        </div>
+
+        <div class="form-group">
+            <label for="room_number">Room Number</label>
+            {{ render_field(form.number, class_="form-control", id="room_number") }}
+        </div>
+
+        <div class="form-group">
+            <label for="room_type">Room Type</label>
+            {{ render_field(form.type, class_="form-control", id="room_type") }}
+        </div>
+
+        <div class="form-group">
+            <label for="room_status">Room Status</label>
+            {{ render_field(form.status, class_="form-control", id="room_status") }}
+        </div>
+
+        <div class="form-group">
+            <label for="room_capacity">Room Capacity</label>
+            {{ render_field(form.capacity, class_="form-control", id="room_capacity") }}
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Add Room</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
